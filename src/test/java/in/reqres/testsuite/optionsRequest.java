@@ -7,20 +7,20 @@ import static io.restassured.RestAssured.given;
 
 /*
  * Ravi's Creation
- * Date of Creation 10-05-2020
+ * Date of Creation
  */
-public class DeleteRequest extends TestBase {
+public class optionsRequest extends TestBase {
 
     @Test
-    public void deleteUser(){
+    public void checkOpitons(){
+
         given()
-                .log()
-                .body()
                 .when()
-                .delete("/users/9")
+                .options("/users")
                 .then()
                 .log()
-                .status()
+                .headers()
                 .statusCode(204);
+
     }
 }

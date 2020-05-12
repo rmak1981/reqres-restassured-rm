@@ -37,7 +37,6 @@ public class PostRequest extends TestBase {
 
         Pojo pojo = new Pojo();
 
-
         pojo.setEmail("shivagyan@yahoo.com");
         pojo.setPassword("shiva123");
 
@@ -49,17 +48,17 @@ public class PostRequest extends TestBase {
                 .post("/api/register")
                 .then()
                 .log().body()
-                .statusCode(201);
+                .statusCode(200);
     }
 
     @Test
     public void registerUnsuccessful(){
 
         Pojo pojo = new Pojo();
-        pojo.setName("mahakal");
-        pojo.setJob("vinash");
+//        pojo.setName("mahakal");
+//        pojo.setJob("vinash");
         pojo.setEmail("anantnag@yahoo.com");
-        pojo.setPassword("ganga");
+        //pojo.setPassword("ganga");
 
         given()
                 .log()
@@ -69,7 +68,7 @@ public class PostRequest extends TestBase {
                 .post("/api/register")
                 .then()
                 .log().body()
-                .statusCode(201);
+                .statusCode(400);
     }
     @Test
     public void loginSuccessful(){
@@ -86,9 +85,11 @@ public class PostRequest extends TestBase {
                 .when()
                 .body(pojo)
                 .post("/api/login")
+                // when only run with login link err msg is - username and email missing
+                //.post("/login")
                 .then()
                 .log().body()
-                .statusCode(201);
+                .statusCode(200);
 
     }
     @Test
@@ -102,6 +103,8 @@ public class PostRequest extends TestBase {
                 .when()
                 .body(pojo)
                 .post("/api/login")
+                // when only run with login link err msg is - username and email missing
+                //.post("/login")
                 .then()
                 .log().status()
                 .log().body()
